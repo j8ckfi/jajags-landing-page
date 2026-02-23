@@ -1,0 +1,36 @@
+# jajags.tech
+
+> a student-run Hack Club chapter at Jefferson Academy Secondary.
+> we make projects, study the systems underneath them, and learn by shipping.
+> identity: humanist AI — building technology that stays human.
+
+## about
+
+jajags.tech is a student-run Hack Club chapter at Jefferson Academy Secondary School in Colorado. Members build tools, write research, and study the systems underneath software. The club's identity is "humanist AI" — approaching technology with the sensibility of the Impressionists: capturing human experience, not just optimizing for metrics.
+
+- discord: https://discord.gg/cSSZGMMqSK
+- github: https://github.com/jajags-tech
+- meetings: 1st and 3rd Thursdays, lunch, Room 202
+
+## sections
+
+- /blog — technical writing, project post-mortems, essays by members
+- /research — academic papers and investigations by members
+- /projects — tools, experiments, and products shipped by members
+- /builders — member profiles, auto-derived from content authorship
+- /curriculum — structured learning tracks with lessons and quizzes (no accounts required)
+- /tools — open tools built by the club
+- /library — curated external tools the club recommends
+- /now — what the club is actively building this semester
+- /about — club background, how we work
+- /join — how to join (discord + show up)
+
+## content schema
+
+All content is MDX files in git. Every piece of content has an `authors: string[]` field. Builder profiles are auto-generated from author attribution across all content types.
+
+Content types: blog posts, research items, projects, club-built tools, curriculum lessons (with embedded quizzes).
+
+## technology
+
+Next.js 16 (App Router), Tailwind CSS v4, MDX via next-mdx-remote, Turborepo monorepo, deployed on Vercel.

@@ -1,0 +1,60 @@
+---
+title: "BashGemma: Fine-tuning a 270M Parameter Model for Natural Language to Bash Translation"
+date: "2025-12-26"
+abstract: "Can a 540MB model — small enough to run on a laptop without internet — reliably translate plain English into bash commands? We fine-tuned Google's smallest open model on 9,000 examples and got from 4.5% to 57.4% accuracy. The trick was in how we trained it, not just what we trained it on."
+authors: ["Jack Large"]
+tags: ["machine learning", "NLP", "bash", "fine-tuning", "edge AI"]
+status: published
+doi: "https://doi.org/10.5281/zenodo.18058613"
+citation: "Large, J. (2025). BashGemma: Fine-tuning a 270M Parameter Model for Natural Language to Bash Translation. Zenodo. https://doi.org/10.5281/zenodo.18058613"
+github: "https://huggingface.co/thinkthink-dev/bashgemma-270m"
+---
+
+Most AI tools that can translate English into code — "find all Python files modified in the last week," rendered into an actual bash command — rely on very large models. GPT-4 and Claude are good at this. They're also hundreds of billions of parameters, require an API key, need an internet connection, and cost money per query.
+
+This paper asks whether a much smaller model can do the same job. Specifically: **270 million parameters**, which fits in 540MB — about the size of a podcast episode. That's small enough to run offline, on a laptop, with no API call.
+
+## the task
+
+Bash is the command-line language most Linux and macOS systems use. It's expressive and powerful but has a notoriously unintuitive syntax. The goal of "natural language to bash" (NL2Bash) is simple: a user types something like *"delete all .tmp files older than 7 days"* and the model outputs the correct command.
+
+This is structurally harder than it looks. Bash commands have precise flag syntax, and a small error (wrong flag, wrong path, misread intent) produces a broken command or, worse, does something destructive. The model needs to pick the right utility, assemble the right arguments, and output valid structured JSON — not just plausible-sounding text.
+
+## the model
+
+We started with FunctionGemma, a 270M parameter variant of Google's Gemma model specifically pretrained on function calling (outputting structured JSON). Out of the box, it produced valid JSON exactly 0% of the time on bash tasks. NLC2CMD accuracy was 4.5%.
+
+We fine-tuned it using **LoRA** — a technique that inserts small trainable matrices into the model instead of retraining all its weights. This keeps the process efficient: the entire training run took 36 minutes on a MacBook Pro M4 Max.
+
+## the training insight
+
+The more interesting contribution is how we structured the training data. Standard fine-tuning teaches the model by computing loss over the entire sequence: both the user's query and the model's response. We tried something different: **response-only training**, where we mask the input (the query) and only penalize the model for getting the output wrong.
+
+The intuition: the model doesn't need to learn how to read English — it already does that. It needs to learn how to *output* valid structured bash. Focusing the loss signal entirely on the output reduced final training loss from 0.63 to 0.19 — a 3x improvement in convergence.
+
+## results
+
+After fine-tuning on 9,153 training examples:
+
+| Model | NLC2CMD Accuracy | Parse Rate |
+|---|---|---|
+| Base FunctionGemma | 4.5% | 0% |
+| BashGemma (full-sequence) | 56.5% | 100% |
+| BashGemma (response-only) | **57.4%** | 99.5% |
+
+The jump from 4.5% to 57.4% is a 52.9 percentage point improvement. Parse rate of 99.5% means the model almost always outputs valid JSON, even when the command is wrong.
+
+## where it fails
+
+Manual error analysis on 100 test samples found two main failure modes:
+
+- **Wrong utility (23%):** The model confuses when to use a pipeline versus a single command with flags. A common mistake was predicting `pipeline` when the reference answer used `find -exec`.
+- **Partial match (45%):** Correct utility, wrong arguments — missing flags, incorrect paths. The model often gets the *idea* right but drops details.
+
+About 32% of test examples were exact matches. The model handles `find` with various filters well. It struggles with complex pipelines and less common utilities like `sed` and `awk` that were underrepresented in training data.
+
+## the point
+
+The result is a 540MB model that does something genuinely useful, runs fully offline, and can be deployed anywhere without an API. The accuracy isn't production-grade — you wouldn't want it silently running commands on a critical server — but it's well past the threshold of being useful as an assistant or a learning tool.
+
+The response-only training approach is the technically reusable contribution here. The same idea — let the model focus loss only on what it needs to learn to produce — applies to any structured-output fine-tuning task.

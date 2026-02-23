@@ -1,0 +1,53 @@
+---
+title: "Transit Inequality in the Denver Metro Area"
+date: "2026-01-01"
+abstract: "We measured how many jobs Denver residents can reach by bus and rail — and whether the people who depend most on transit actually get the best service. Across 657 census tracts, the answer is largely yes, but the overall picture is still deeply unequal."
+authors: ["Jack Large", "Kris Rawlins", "Yoni Nayberg", "Madelyn Sarbin"]
+tags: ["transit", "equity", "urban systems", "data analysis"]
+status: published
+doi: "https://doi.org/10.5281/zenodo.18236951"
+citation: "Large, J., Sarbin, M., Rawlins, K., & Nayberg, Y. (2026). Transit Inequality in the Denver Metro Area: A Quantitative Analysis of Job Accessibility and Service Equity. Zenodo. https://doi.org/10.5281/zenodo.18236951"
+github: "https://github.com/j8ckfi/denver-transit-equity"
+---
+
+The core question behind this paper is simple: does Denver's transit system actually serve the people who need it most?
+
+"Need" is measurable. Households without a car — about 9% of Denver metro residents — have no realistic alternative to buses and trains for getting to work. If RTD's route network reflects genuine equity priorities, those households should have better service. If it doesn't, they're stuck.
+
+We found that, on balance, it does — but the picture is more complicated than that headline suggests.
+
+## what we measured
+
+We computed job accessibility for every residential census tract in the Denver metro: how many jobs can someone reach from that neighborhood within 45 minutes by transit? We ran this calculation across 18 departure times covering morning and evening rush hours, then took the median. That gives a stable estimate of typical access, not a best-case snapshot.
+
+The data comes from three sources: RTD's GTFS schedule (the machine-readable format transit agencies publish for apps like Google Maps), Census employment data at the census block level, and American Community Survey demographic estimates for income, race, and vehicle ownership. Our routing algorithm works similarly to what trip planners actually use — it finds the fastest real-schedule connection, with up to two transfers, walking up to 800 meters to a stop.
+
+## the main finding
+
+Tracts with more zero-vehicle households access more jobs. The correlation is **r = 0.61** — strong enough to be meaningful, not so clean that it looks like we tortured the data. Early-morning service (5–6 AM) aligns even better (r = 0.62), which suggests the network does reasonably well at covering shift workers.
+
+This holds up under scrutiny. When we control for population density, distance from downtown, and median income in a regression, the relationship survives: each percentage point increase in zero-vehicle share is associated with **4,318 additional jobs** reachable within 45 minutes. That's a real number with a p-value well below 0.001.
+
+## the catch
+
+That correlation doesn't mean everyone is well-served. The **Gini coefficient** for job accessibility is 0.75 — for reference, 0 is perfect equality and 1 is one tract with everything. Denver's transit access is highly concentrated.
+
+The counterintuitive income finding is worth sitting with: lower-income tracts access *more* jobs on average, not fewer. The bottom income quartile averages **42,900 jobs** within 45 minutes; the top quartile averages 7,400 — a ratio of nearly 6:1 in the "wrong" direction. This isn't because transit is specifically designed to help low-income residents. It's because lower-income households cluster in central neighborhoods that transit networks naturally serve well. Higher-income households tend to live in suburbs where a car is assumed.
+
+**32% of tracts have no transit access at all** — no stop within 800 meters. Those tracts contain 34% of the metro population. But here's the telling number: they contain only **13% of zero-vehicle households**. Car-free households have, by necessity or prior choice, concentrated where buses run.
+
+## what this does and doesn't say
+
+The paper is careful on causation. We can't tell from this data whether RTD intentionally routes service to serve transit-dependent areas, or whether car-free households moved to neighborhoods that already had good service, or whether both effects reinforce each other. Probably all three. Untangling them would require tracking changes over time, which we didn't do.
+
+"Access" also isn't the same as "useful." A route that runs once an hour technically provides access to jobs, but if your shift starts at 6:15 AM and the bus arrives at 5:40 or 6:42, that doesn't help much. Only 16% of tracts have what we'd call high-frequency service. Future work should look at how competitive transit actually is relative to driving, not just whether a route exists.
+
+## the suburban service desert problem
+
+The 32% of tracts with no service are, on average, 18.4 km from downtown — compared to 11.2 km for served tracts. They have higher incomes ($89,400 median vs $72,100) and lower density. They're suburbs and exurbs built around cars, and RTD doesn't run buses there.
+
+This is worth naming plainly: extending service to those areas would primarily help car-owning households who chose not to take transit, not the transit-dependent residents the equity framing implies. Whether that's a good use of transit dollars is a policy question outside this paper's scope — but the data is relevant to it.
+
+## how to replicate this
+
+All code is on GitHub under MIT license. The data sources (RTD GTFS, Census LODES, ACS) are all publicly available. If you want to run the same analysis for a different city or a different year of RTD data, the pipeline is documented enough to do it.
