@@ -9,7 +9,7 @@ export default function AboutPage() {
 
       <div className="relative w-full min-h-[60vh] overflow-hidden">
         <Image
-          src="/paintings/oarsmen_at_chatou_1951.5.2.jpg"
+          src="/paintings/oarsmen_at_chatou_1951.5.2.webp"
           alt="Oarsmen at Chatou by Renoir"
           fill
           className="object-cover object-center"

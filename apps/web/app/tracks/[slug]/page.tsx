@@ -46,6 +46,8 @@ export default async function TrackPage({ params }: { params: Promise<{ slug: st
             alt={discipline.paintingAlt}
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-white/10" />

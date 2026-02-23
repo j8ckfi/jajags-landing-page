@@ -11,35 +11,35 @@ import { getAllProjects } from "@/lib/content/projects"
 const disciplines = [
   {
     slug: "artificial-intelligence",
-    painting: "/paintings/jeanne_samary_1970.17.78.jpg",
+    painting: "/paintings/jeanne_samary_1970.17.78.webp",
     alt: "Jeanne Samary by Renoir",
     label: "artificial intelligence",
     line: "language, vision, and the models underneath.",
   },
   {
     slug: "systems",
-    painting: "/paintings/notre_dame_de_paris_2015.19.79.jpg",
+    painting: "/paintings/notre_dame_de_paris_2015.19.79.webp",
     alt: "Notre-Dame de Paris",
     label: "systems",
     line: "architecture, compilers, operating systems.",
   },
   {
     slug: "agents",
-    painting: "/paintings/oarsmen_at_chatou_1951.5.2.jpg",
+    painting: "/paintings/oarsmen_at_chatou_1951.5.2.webp",
     alt: "Oarsmen at Chatou by Renoir",
     label: "agents",
     line: "computers building computers.",
   },
   {
     slug: "data",
-    painting: "/paintings/the_seine_at_giverny_1963.10.180.jpg",
+    painting: "/paintings/the_seine_at_giverny_1963.10.180.webp",
     alt: "The Seine at Giverny",
     label: "data & research",
     line: "questions that take longer than a sprint.",
   },
   {
     slug: "misc",
-    painting: "/paintings/the_mussel_harvest_1954.8.1.jpg",
+    painting: "/paintings/the_mussel_harvest_1954.8.1.webp",
     alt: "The Mussel Harvest",
     label: "misc",
     line: "everything else.",
@@ -65,10 +65,12 @@ export default function Home() {
       <section className="relative min-h-[100dvh] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/paintings/cliffs_at_pourville_1985.64.27.jpg"
+            src="/paintings/cliffs_at_pourville_1985.64.27.webp"
             alt="Cliffs at Pourville by Monet"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10" />
@@ -123,6 +125,8 @@ export default function Home() {
                     src={painting}
                     alt={alt}
                     fill
+                    loading="lazy"
+                    sizes="(max-width: 768px) 50vw, 20vw"
                     className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                   />
                 </div>

@@ -11,7 +11,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "artificial-intelligence",
     label: "artificial intelligence",
-    painting: "/paintings/jeanne_samary_1970.17.78.jpg",
+    painting: "/paintings/jeanne_samary_1970.17.78.webp",
     paintingAlt: "Jeanne Samary by Renoir",
     line: "language, vision, and the models underneath.",
     tags: ["AI", "machine learning", "NLP", "artificial intelligence", "inference", "fine-tuning", "LLM", "model compression", "knowledge distillation"],
@@ -19,7 +19,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "systems",
     label: "systems",
-    painting: "/paintings/notre_dame_de_paris_2015.19.79.jpg",
+    painting: "/paintings/notre_dame_de_paris_2015.19.79.webp",
     paintingAlt: "Notre-Dame de Paris",
     line: "architecture, compilers, operating systems.",
     tags: ["systems", "architecture", "compilers", "OS", "networking", "infrastructure"],
@@ -27,7 +27,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "agents",
     label: "agents",
-    painting: "/paintings/oarsmen_at_chatou_1951.5.2.jpg",
+    painting: "/paintings/oarsmen_at_chatou_1951.5.2.webp",
     paintingAlt: "Oarsmen at Chatou by Renoir",
     line: "computers building computers.",
     tags: ["agents", "automation", "multi-agent", "web app", "open access"],
@@ -35,7 +35,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "developer-tools",
     label: "developer tools",
-    painting: "/paintings/charing_cross_bridge_london_1985.64.32.jpg",
+    painting: "/paintings/charing_cross_bridge_london_1985.64.32.webp",
     paintingAlt: "Charing Cross Bridge by Monet",
     line: "the tools that make building faster.",
     tags: ["developer tools", "CLI", "tooling", "bash", "devtools"],
@@ -43,7 +43,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "data",
     label: "data & research",
-    painting: "/paintings/the_seine_at_giverny_1963.10.180.jpg",
+    painting: "/paintings/the_seine_at_giverny_1963.10.180.webp",
     paintingAlt: "The Seine at Giverny",
     line: "questions that take longer than a sprint.",
     tags: ["data", "data analysis", "statistics", "equity", "urban systems", "transit"],
@@ -51,7 +51,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "design",
     label: "design",
-    painting: "/paintings/poppies_isles_of_shoals_1997.135.1.jpg",
+    painting: "/paintings/poppies_isles_of_shoals_1997.135.1.webp",
     paintingAlt: "Poppies at the Isles of Shoals",
     line: "form, typography, and things that feel right.",
     tags: ["design", "UI", "typography", "UX"],
@@ -59,7 +59,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "education",
     label: "education",
-    painting: "/paintings/first_snow_at_veneux-nadon_1983.98.1.jpg",
+    painting: "/paintings/first_snow_at_veneux-nadon_1983.98.1.webp",
     paintingAlt: "First Snow at Veneux-Nadon by Sisley",
     line: "learning in public. teaching by building.",
     tags: ["education", "learning", "teaching", "curriculum"],
@@ -67,7 +67,7 @@ export const disciplines: Discipline[] = [
   {
     slug: "misc",
     label: "misc",
-    painting: "/paintings/the_mussel_harvest_1954.8.1.jpg",
+    painting: "/paintings/the_mussel_harvest_1954.8.1.webp",
     paintingAlt: "The Mussel Harvest",
     line: "everything else.",
     tags: [],

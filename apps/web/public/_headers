@@ -1,0 +1,22 @@
+# Paintings — immutable, cache for 1 year
+/paintings/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Next.js hashed static assets — immutable
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages — revalidate every hour, serve stale while revalidating
+/*.html
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Root HTML
+/
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Security headers on everything
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

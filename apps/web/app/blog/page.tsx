@@ -5,21 +5,21 @@ import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 
 const paintingCycle = [
-  "women_on_the_beach_at_berck_1970.17.15.jpg",
-  "oarsmen_at_chatou_1951.5.2.jpg",
-  "the_seine_at_giverny_1963.10.180.jpg",
-  "notre_dame_de_paris_2015.19.79.jpg",
-  "cliffs_at_pourville_1985.64.27.jpg",
-  "poppies_isles_of_shoals_1997.135.1.jpg",
-  "charing_cross_bridge_london_1985.64.32.jpg",
-  "entrance_to_the_harbor_le_havre_1983.1.16.jpg",
-  "first_snow_at_veneux-nadon_1983.98.1.jpg",
-  "the_mussel_harvest_1954.8.1.jpg",
-  "view_of_monte_carlo_from_cap_martin_2014.136.60.jpg",
-  "simplon_pass_2014.79.31.jpg",
-  "the_banks_of_the_oise_1963.10.214.jpg",
-  "a_north_east_headland_2014.136.7.jpg",
-  "jeanne_samary_1970.17.78.jpg",
+  "women_on_the_beach_at_berck_1970.17.15.webp",
+  "oarsmen_at_chatou_1951.5.2.webp",
+  "the_seine_at_giverny_1963.10.180.webp",
+  "notre_dame_de_paris_2015.19.79.webp",
+  "cliffs_at_pourville_1985.64.27.webp",
+  "poppies_isles_of_shoals_1997.135.1.webp",
+  "charing_cross_bridge_london_1985.64.32.webp",
+  "entrance_to_the_harbor_le_havre_1983.1.16.webp",
+  "first_snow_at_veneux-nadon_1983.98.1.webp",
+  "the_mussel_harvest_1954.8.1.webp",
+  "view_of_monte_carlo_from_cap_martin_2014.136.60.webp",
+  "simplon_pass_2014.79.31.webp",
+  "the_banks_of_the_oise_1963.10.214.webp",
+  "a_north_east_headland_2014.136.7.webp",
+  "jeanne_samary_1970.17.78.webp",
 ]
 
 export default function BlogPage() {
@@ -57,6 +57,8 @@ export default function BlogPage() {
                       alt=""
                       width={800}
                       height={500}
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                       style={{ aspectRatio: i % 3 === 1 ? "4/3" : i % 3 === 2 ? "3/4" : "16/9" }}
                     />
