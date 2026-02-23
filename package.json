@@ -1,6 +1,7 @@
 {
   "name": "jajags-platform",
   "private": true,
+  "packageManager": "npm@11.8.0",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "dev": "turbo dev",
