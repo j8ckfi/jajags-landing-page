@@ -4,8 +4,12 @@ import { getAllTracks, getTrackBySlug } from "@/lib/content/curriculum"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 
-export async function generateStaticParams() {
-  return getAllTracks().map((t) => ({ track: t.slug }))
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  const tracks = getAllTracks()
+  if (tracks.length === 0) return [{ track: "_" }]
+  return tracks.map((t) => ({ track: t.slug }))
 }
 
 export default async function TrackPage({

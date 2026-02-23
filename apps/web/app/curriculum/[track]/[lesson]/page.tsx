@@ -6,8 +6,11 @@ import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { Quiz } from "@/components/Quiz"
 
-export async function generateStaticParams() {
+export const dynamicParams = false
+
+export function generateStaticParams() {
   const tracks = getAllTracks()
+  if (tracks.length === 0) return [{ track: "_", lesson: "_" }]
   return tracks.flatMap((track) =>
     track.lessons.map((lesson) => ({ track: track.slug, lesson: lesson.slug }))
   )
