@@ -1,0 +1,22 @@
+---
+title: "cas computer"
+date: "2026-01-22"
+description: "Autonomous trading agent for Polymarket and Alpaca — gathers data and executes trades with no manual intervention."
+authors: []
+tags: ["trading", "automation", "finance", "polymarket", "alpaca"]
+status: active
+---
+
+A single agent that runs end-to-end: it pulls in market data, decides when and what to trade, and places orders on Polymarket and Alpaca. No hand-holding. No manual execution.
+
+## what it does
+
+Data comes in from both venues — order books, prices, event outcomes. The agent evaluates that, applies its logic, and submits trades. Positions are opened and closed autonomously. You set the rules and risk; it does the execution.
+
+## why autonomous
+
+Manual trading doesn't scale. By the time you've checked a screen and clicked, the edge can be gone. cas computer is built to react to the data it sees and to keep running so opportunities aren't missed.
+
+## stack
+
+Polymarket and Alpaca APIs for data and execution. Logic and scheduling are custom; no external signal vendors. Runs continuously and manages its own state.
