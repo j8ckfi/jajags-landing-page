@@ -76,3 +76,9 @@ builder profiles at /builders are auto-derived from all content with matching au
 - projects: title, date, description, authors, tags, url?, github?, status (active|archived|shipped)
 - tools: title, description, authors, url?, github?
 - curriculum lesson: title, track, order, authors, quiz (question, options, answer)
+
+## deployment
+- platform: cloudflare pages
+- project name: jajags-tech
+- build output: apps/web/out (next.js static export)
+- deploy command: `npx wrangler pages deploy out --project-name=jajags-tech` from apps/web/

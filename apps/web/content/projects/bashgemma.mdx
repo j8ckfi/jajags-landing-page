@@ -1,0 +1,29 @@
+---
+title: "BashGemma"
+date: "2024-12-26"
+description: "BashGemma translates natural language queries into structured JSON tool calls representing bash commands. It achieves 57.4% NLC2CMD accuracy on NL2Bash test data—a 52.9 percentage point improvement over the base FunctionGemma model."
+authors: ["Jack Large"]
+tags: ["machine learning", "NLP", "bash", "fine-tuning", "NL2Bash"]
+url: "https://huggingface.co/thinkthink-dev/bashgemma-270m"
+status: shipped
+---
+
+Fine-tuned FunctionGemma 270M for natural language to bash command translation. The model outputs structured JSON tool calls instead of raw text, making it easy to integrate into pipelines and tools.
+
+## what it does
+
+Give it a natural language query like "find all Python files in the current directory" and it returns valid JSON: `{"name": "find", "arguments": {"name": "'*.py'", "path": "."}}`. Strong on `find` with filters, simple pipelines, and common utilities like `grep`, `ls`, `cat`, `wc`, and `sort`.
+
+## the numbers
+
+| Metric | Baseline | BashGemma |
+|--------|----------|-----------|
+| NLC2CMD Accuracy | 4.5% | 57.4% |
+| Utility Match | 0% | 59.5% |
+| Parse Rate | 0% | 99.5% |
+
+Training took 36 minutes on an M4 Max. The model is 540MB and runs fully offline.
+
+## limitations
+
+Complex multi-step operations, utilities not in training data (`rsync`, `tar`), and complex `sed`/`awk` patterns. See the [research paper](/research/bashgemma) for full analysis.
